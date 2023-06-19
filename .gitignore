@@ -56,7 +56,10 @@ yarn-error.log*
 .vercel
 
 # yarn.lock
-yarn.lock
+yarn-lock.json
+
+# package.lock
+package-lock.json
 
 test
 build/
