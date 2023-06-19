@@ -1,0 +1,29 @@
+import dedent from 'ts-dedent'
+
+import {
+  ArgsTable,
+  Canvas,
+  Description,
+  Meta,
+  Preview,
+  Source,
+  Story,
+  DocsContainer
+} from '@storybook/addon-docs'
+
+import { display, headings, body } from 'src/styles/typographyStyles'
+import TypographyTable from 'src/components/doc-components/TypographyTable/TypographyTable'
+
+<Meta
+  title='Styles / Typography'
+  parameters={{ options: { isToolshown: false } }}
+/>
+
+<br />
+<TypographyTable fontStyles={display} />
+
+<br />
+<TypographyTable fontStyles={headings} header={false}/>
+
+<br />
+<TypographyTable fontStyles={body} header={false}/>

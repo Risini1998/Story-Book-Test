@@ -1,0 +1,80 @@
+import { Meta } from '@storybook/blocks'
+import ColorBoard from 'components/doc-components/ColorsTable/ColorBoard'
+
+import { colors } from 'styles/colorStyles'
+
+<Meta title='Styles/Colors' />
+
+# Colors
+
+## Primary Colors
+
+These are the two main colors that make up the majority of the colors used in the NZSB design system.
+
+### Deep Blue
+
+<ColorBoard palette={colors['B']} />
+
+<br />
+<br />
+### Orange
+
+<ColorBoard palette={colors['O']} />
+
+<br />
+<br />
+### Custom (Business Requested)
+
+<ColorBoard palette={colors['aqua']} />
+
+<br />
+<br />
+### Mono
+
+<ColorBoard palette={colors['mono']} />
+
+# Neutral colors
+
+These are the main colors that make up the majority of the colors used in the design system.
+
+### Gray
+
+Gray is a neutral color and is the foundation of the color system. Almost everything in UI design — text, form fields, backgrounds, dividers — are usually gray.
+
+<ColorBoard palette={colors['N']} />
+<br />
+<br />
+
+# Semantic colors
+
+These are the main colors that make up the majority of the colors used in the design system.
+
+### Success
+
+This color stands for a good, positive situation, or for the successful completion of a task.
+
+<ColorBoard palette={colors['G']} />
+
+<br />
+<br />
+### Danger
+
+Use this color for errors, or to indicate a bad or negative status or consequence.
+
+<ColorBoard palette={colors['R']} />
+
+<br />
+<br />
+### Warning
+
+This color indicates a critical situation or warning.
+
+<ColorBoard palette={colors['Y']} />
+
+<br />
+<br />
+### Alias Tokens
+
+These colors relate to specific context or abstraction. Ex: border color, bg color etc
+
+<ColorBoard palette={colors['borderColor']} />
