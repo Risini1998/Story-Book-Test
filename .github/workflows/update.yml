@@ -27,6 +27,9 @@ jobs:
       # - name: Login to npm registry
       #   run: npm login --registry=https://registry.npmjs.org/ --scope=@risini_digital400 --always-auth --_auth=${{ secrets.NPM_TOKEN }}
       
+      - name: Login to npm registry
+        run: echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+        
       - name: Publish package
         run: |
           npm version patch
