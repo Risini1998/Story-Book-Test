@@ -55,11 +55,5 @@ yarn-error.log*
 # 3rd party plugins
 .vercel
 
-# yarn.lock
-yarn-lock.json
-
-# package.lock
-package-lock.json
-
 test
 build/
