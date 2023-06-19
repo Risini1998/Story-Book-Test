@@ -18,7 +18,7 @@
     "declaration": true,
     "noImplicitAny": true,
     "noEmit": false,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "plugins": [],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
