@@ -24,9 +24,8 @@ jobs:
       - name: Build package
         run: npm run build
 
-      - name: Login to npm registry
-        run: npm login --registry=https://registry.npmjs.org/ --scope=@risini_digital400 --always-auth --_auth=${{ secrets.NPM_TOKEN }}
-      
+      # - name: Login to npm registry
+      #   run: npm login --registry=https://registry.npmjs.org/ --scope=@risini_digital400 --always-auth --_auth=${{ secrets.NPM_TOKEN }}
       
       - name: Publish package
         run: |
