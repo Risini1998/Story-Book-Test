@@ -33,8 +33,8 @@ jobs:
       - name: Retrieve OTP
         id: otp
         run: |
-          npm install -g get-otp-cli
-          echo "::set-output name=otp::$(get-otp)"
+          npm install -g otp-cli
+          echo "::set-output name=otp::$(otp-cli)"
 
       - name: Login to npm registry
         run: npx npm-cli-login -u risini_digital400 -p ${{ secrets.NPM_PASSWORD }} -e ${{ secrets.NPM_EMAIL }} -t ${{ steps.otp.outputs.otp }}
