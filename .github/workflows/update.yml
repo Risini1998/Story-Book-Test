@@ -34,3 +34,16 @@ jobs:
           npm version patch
           npm publish --access public
 
+      - name: Update package version
+        run: |
+          VERSION=$(npm view story-book-test-package-git version)
+          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "Risini1998"
+          git config user.email "risinipiyathma1998@gmal.com"
+          git add package.json
+          git commit -m "Update package version to $VERSION"
+          git push
+
