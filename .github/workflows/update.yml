@@ -30,8 +30,14 @@ jobs:
       # - name: Login to npm registry
       #   run: echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
+      - name: Retrieve OTP
+        id: otp
+        run: |
+          npm install -g get-otp-cli
+          echo "::set-output name=otp::$(get-otp)"
+
       - name: Login to npm registry
-        run: npx npm-cli-login -u risini_digital400 -p ${{ secrets.NPM_PASSWORD }} -e ${{ secrets.NPM_EMAIL }}
+        run: npx npm-cli-login -u risini_digital400 -p ${{ secrets.NPM_PASSWORD }} -e ${{ secrets.NPM_EMAIL }} -t ${{ steps.otp.outputs.otp }}
 
       # - name: Login to npm registry
       #   run: npx npm-cli-login
