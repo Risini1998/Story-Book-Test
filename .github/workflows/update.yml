@@ -37,8 +37,10 @@ jobs:
       - name: Update package version
         run: |
           $version = npm view story-book-test-package-git version
-          (Get-Content -Path package.json) | ForEach-Object {$_ -replace '"version": ".*"', '"version": "'+$version+'"'} | Set-Content -Path package.json
-          
+          $json = Get-Content -Raw -Path package.json | ConvertFrom-Json
+          $json.version = $version
+          $json | ConvertTo-Json -Depth 100 | Set-Content -Path package.json
+
       - name: Commit and push changes
         run: |
           git config user.name "Risini1998"
