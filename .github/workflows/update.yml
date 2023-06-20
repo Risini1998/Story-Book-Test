@@ -91,6 +91,8 @@ jobs:
           $json | ConvertTo-Json -Depth 100 | Set-Content -Path package.json
 
       - name: Commit and push changes
+        env:
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           git config user.name "Risini1998"
           git config user.email "risinipiyathma1998@gmal.com"
