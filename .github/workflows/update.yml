@@ -31,10 +31,13 @@ jobs:
       #   run: echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Login to npm registry
-        run: npx npm-cli-login
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
+        run: npx npm-cli-login -u risini_digital400 -p ${{ secrets.NPM_PASSWORD }} -e ${{ secrets.NPM_EMAIL }}
+
+      # - name: Login to npm registry
+      #   run: npx npm-cli-login
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish package
         run: |
           npm version patch
