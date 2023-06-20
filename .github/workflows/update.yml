@@ -26,8 +26,8 @@ jobs:
  
       - name: Login to npm registry
         run: |
-          npm set init.author.name "risini_digital400"
-          npm set init.author.email "risinip@digital400.com"
+          npm set --init-author-name "risini_digital400"
+          npm set --init-author-email "risinip@digital400.com"
           npm login --registry=https://registry.npmjs.org/ --scope=@risini_digital400 --always-auth --_auth=${{ secrets.NPM_TOKEN }}
 
       # - name: Login to npm registry
