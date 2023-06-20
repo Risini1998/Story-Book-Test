@@ -1,6 +1,6 @@
 {
-  "name": "story-book-test-package-github",
-  "version": "0.1.0",
+  "name": "story-book-test-package-github_d400",
+  "version": "0.0.1",
   "license": "ISC",
   "private": false,
   "main": "./dist/src/index.js",
