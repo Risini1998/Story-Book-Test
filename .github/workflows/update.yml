@@ -33,7 +33,7 @@ jobs:
           npm set //registry.npmjs.org/:_authToken =${{ secrets.NPM_TOKEN }}
           npm set //registry.npmjs.org/:_auth-type=legacy
           
-      # npm login --registry=https://registry.npmjs.org/ --scope=@risini_digital400 --always-auth --_auth=${{ secrets.NPM_TOKEN }}
+      # npm login --registry=https://registry.npmjs.org/ --scope=@risini_digital400 --auth-type=legacy --_auth=${{ secrets.NPM_TOKEN }}
 
       # - name: Login to npm registry
       #   run: echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_TOKEN }}" > ~/.npmrc
