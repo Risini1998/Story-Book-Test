@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-latest
     
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
       
       - name: Set up Node.js
@@ -19,29 +19,31 @@ jobs:
           node-version: 16
       
       - name: Install dependencies
-        run: npm i
+        run: npm ci
       
-      - name: Prepare for deployment
-        run: npm pack
+      - name: Build package
+        run: npm run build
 
       - name: Publish package
+        env:
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           npm version patch
-          npm publish
+          npm publish --access public
 
-      # - name: Update package version
-      #   run: |
-      #     $version = npm view story-book-test-package-git version
-      #     $json = Get-Content -Raw -Path package.json | ConvertFrom-Json
-      #     $json.version = $version
-      #     $json | ConvertTo-Json -Depth 100 | Set-Content -Path package.json
+      - name: Update package version
+        run: |
+          $version = npm view story-book-test-package-git version
+          $json = Get-Content -Raw -Path package.json | ConvertFrom-Json
+          $json.version = $version
+          $json | ConvertTo-Json -Depth 100 | Set-Content -Path package.json
 
       - name: Commit and push changes
         run: |
-          git config --local user.name "Risini1998"
-          git config --local user.email "risinipiyathma1998@gmal.com"
-          git add .
+          git config user.name "Risini1998"
+          git config user.email "risinipiyathma1998@gmal.com"
+          git add package.json
           git commit -m "Update package version to $VERSION"
           git push
 
