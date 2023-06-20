@@ -22,6 +22,8 @@ jobs:
         run: npm ci
       
       - name: Build package
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run build
 
       - name: Publish package
@@ -32,18 +34,18 @@ jobs:
           npm version patch
           npm publish --access public
 
-      - name: Update package version
-        run: |
-          $version = npm view story-book-test-package-git version
-          $json = Get-Content -Raw -Path package.json | ConvertFrom-Json
-          $json.version = $version
-          $json | ConvertTo-Json -Depth 100 | Set-Content -Path package.json
+      # - name: Update package version
+      #   run: |
+      #     $version = npm view story-book-test-package-git version
+      #     $json = Get-Content -Raw -Path package.json | ConvertFrom-Json
+      #     $json.version = $version
+      #     $json | ConvertTo-Json -Depth 100 | Set-Content -Path package.json
 
-      - name: Commit and push changes
-        run: |
-          git config user.name "Risini1998"
-          git config user.email "risinipiyathma1998@gmal.com"
-          git add package.json
-          git commit -m "Update package version to $VERSION"
-          git push
+      # - name: Commit and push changes
+      #   run: |
+      #     git config user.name "Risini1998"
+      #     git config user.email "risinipiyathma1998@gmal.com"
+      #     git add package.json
+      #     git commit -m "Update package version to $VERSION"
+      #     git push
 
