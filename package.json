@@ -1,6 +1,6 @@
 {
   "name": "story-book-test-package-git",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "ISC",
   "private": false,
   "main": "./dist/src/index.js",
@@ -35,12 +35,12 @@
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "del -rf dist \u0026\u0026 tsc -p tsconfig.json \u0026\u0026 tsc-alias -p tsconfig.json \u0026\u0026 yarn build:component-styles",
+    "build": "del -rf dist && tsc -p tsconfig.json && tsc-alias -p tsconfig.json && yarn build:component-styles",
     "build:component-styles": "postcss ./src/**/*.css --base src --dir dist/src"
   },
   "browserslist": {
     "production": [
-      "\u003e0.2%",
+      ">0.2%",
       "not dead",
       "not op_mini all"
     ],
