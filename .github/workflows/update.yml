@@ -28,6 +28,7 @@ jobs:
 
       - name: Publish package
         env:
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm version patch
