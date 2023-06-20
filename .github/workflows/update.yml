@@ -37,7 +37,7 @@ jobs:
       - name: Update package version
         run: |
           VERSION=$(npm view story-book-test-package-git version)
-          (Get-Content package.json) -replace '"version": ".*"', '"version": "'$version'"' | Set-Content package.json
+          (Get-Content package.json) -replace '"version": ".*"', '"version": "'+$version+'"' | Set-Content package.json
 
       - name: Commit and push changes
         run: |
