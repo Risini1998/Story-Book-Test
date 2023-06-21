@@ -1,39 +1,40 @@
-import React, { type ReactElement } from 'react'
+import React, { type ReactNode, type ReactElement } from 'react'
 import cx from 'classnames'
 
 interface ButtonProps {
-  // eslint-disable-next-line @typescript-eslint/key-spacing
-  type?:
-  | 'primary-orange'
-  | 'primary-deep-blue'
-  | 'tertiary-gray'
-  | 'tertiary-orange'
-  | 'text-orange'
-  | 'text-gray'
-  | 'link'
-  | 'link-gray'
-  size?: 'xs' | 'sm' | 'md' | 'lg'
-  isLoading?: boolean
+  isBlock?: boolean
   disabled?: boolean
+  iconLeading?: boolean
   iconOnly?: boolean
   iconSwap?: string
-  iconLeading?: boolean
   iconTrailing?: boolean
-  label: string
+  isLoading?: boolean
+  children: ReactNode
   onClick?: () => void
+  size?: 'xs' | 'sm' | 'md' | 'lg'
+  type?:
+         | 'link'
+  | 'link-gray'
+  | 'primary-deep-blue'
+  | 'primary-orange'
+  | 'tertiary-gray'
+  | 'tertiary-orange'
+  | 'text-gray'
+  | 'text-orange'
 }
 
 export const Button = ({
-  type = 'primary-deep-blue',
-  size = 'sm',
-  isLoading = false,
+  isBlock =false,
+  children,
   disabled = false,
+  iconLeading = false,
   iconOnly = false,
   iconSwap,
-  iconLeading = false,
   iconTrailing = false,
-  label,
-  onClick
+  isLoading = false,
+  onClick,
+  size = 'sm',
+  type = 'primary-deep-blue'
 }: ButtonProps): ReactElement => {
   const commonVariant = cx(
     'btn flex justify-center items-center rounded font-roboto font-medium'
@@ -68,22 +69,23 @@ export const Button = ({
   const sizeVariant = cx({
     'text-[14px] leading-xs': size === 'xs' || size === 'sm',
     'text-[16px] leading-md': size === 'md' || size === 'lg',
-    'w-[127px] h-9': size === 'xs' && !iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-[135px] h-10': size === 'sm' && !iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-[158px] h-11': size === 'md' && !iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-[166px] h-12': size === 'lg' && !iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-9 h-9': size === 'xs' && iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-10 h-10': size === 'sm' && iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-11 h-11': size === 'md' && iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-12 h-12': size === 'lg' && iconOnly && type !== 'link' && type !== 'link-gray',
-    'w-[75px] h-4': size === 'xs' && !iconOnly && (type === 'link' || type === 'link-gray'),
-    'w-[82px] h-5': size === 'sm' && !iconOnly && (type === 'link' || type === 'link-gray'),
-    'w-[104px] h-6': size === 'md' && !iconOnly && (type === 'link' || type === 'link-gray'),
-    'w-[127x] h-7': size === 'lg' && !iconOnly && (type === 'link' || type === 'link-gray'),
-    'w-4 h-4': size === 'xs' && iconOnly && (type === 'link' || type === 'link-gray'),
-    'w-5 h-5': size === 'sm' && iconOnly && (type === 'link' || type === 'link-gray'),
-    'w-6 h-6': size === 'md' && iconOnly && (type === 'link' || type === 'link-gray'),
-    'w-7 h-7': size === 'lg' && iconOnly && (type === 'link' || type === 'link-gray')
+
+    'px-3 py-2': size === 'xs' && !iconOnly && type !== 'link' && type !== 'link-gray',
+    'px-4 py-[10px]': size === 'sm' && !iconOnly && type !== 'link' && type !== 'link-gray',
+    'px-5 py-[10px]': size === 'md' && !iconOnly && type !== 'link' && type !== 'link-gray',
+    'px-6 py-3': size === 'lg' && !iconOnly && type !== 'link' && type !== 'link-gray',
+
+    'px-2 py-2': (size === 'xs' && iconOnly && type !== 'link' && type !== 'link-gray') ||
+      (size === 'md' && iconOnly && (type === 'link' || type === 'link-gray')),
+    'px-[10px] py-[10px]': ((size === 'sm' || size==='md') && iconOnly && type !== 'link' && type !== 'link-gray') ||
+      (size === 'lg' && iconOnly && (type === 'link' || type === 'link-gray')),
+    'px-3 py-3': size === 'lg' && iconOnly && type !== 'link' && type !== 'link-gray',
+
+    'px-1 py-1': size === 'xs' && iconOnly && (type === 'link' || type === 'link-gray'),
+    'px-[6px] py-[6px]': size === 'sm' && iconOnly && (type === 'link' || type === 'link-gray'),
+
+    'px-[2px]': !iconOnly && (type === 'link' || type === 'link-gray'),
+    'w-full': isBlock
   })
 
   const borderVariant = cx(
@@ -92,6 +94,12 @@ export const Button = ({
       'border border-solid border-N-100': (type === 'tertiary-gray' || type === 'tertiary-orange') && !disabled
     }
   )
+
+  const iconSize = cx({
+    'h-5 w-5': (size=== 'xs' || size=== 'sm') && type!=='link' && type!=='link-gray',
+    'h-4 w-4': (size=== 'xs' || size=== 'sm') && (type==='link' || type==='link-gray'),
+    'h-6 w-6': size=== 'md' || size=== 'lg'
+  })
 
   const buttonClass = cx(
     commonVariant,
@@ -109,8 +117,8 @@ export const Button = ({
       }}
       disabled={disabled}
     >
-      {iconOnly && <i className={`${iconSwap ?? ''}`} />}
-      {!iconOnly && iconLeading && iconSwap}{!iconOnly && !isLoading && label} {!iconOnly && iconTrailing && iconSwap}
+      {iconOnly && <i className={`${iconSwap ?? ''} ${iconSize}`} />}
+      {!iconOnly && iconLeading && <i className={`${iconSwap ?? ''}  ${iconSize} pr-1`} />}{!iconOnly && !isLoading && children} {!iconOnly && iconTrailing && <i className={`${iconSwap ?? ''} ${iconSize} pl-1`} />}
     </button>
   )
 }

@@ -15,8 +15,10 @@ type Story = StoryObj<typeof ToolTip>
 
 export const ArrowTop: Story = {
   args: {
-    id: 'exaple-tooltip',
+    id: 'example-tooltip',
+    place: 'right',
     heading: 'This is a tooltip',
     children: 'Hello!',
+    delay: 1000
   }
 }

@@ -3,12 +3,12 @@ import cx from 'classnames'
 import { Tooltip } from 'react-tooltip'
 
 interface ToolTipProps {
-  id: string
-  heading: string
   body?: string
-  place?: 'top' | 'right' | 'bottom' | 'left'
-  delay?: number
   children: ReactNode
+  delay?: number
+  heading: string
+  id: string
+  place?: 'top' | 'right' | 'bottom' | 'left'
 }
 
 export const ToolTip = ({
@@ -21,7 +21,7 @@ export const ToolTip = ({
 }: ToolTipProps): ReactElement => {
   const tooltipContent = (): string => {
     return (
-      `<div className="inline-flex flex-col gap-[4px] bg-N-900 text-[12px] leading-xxs text-white">
+      `<div className="inline-flex flex-col gap-1 bg-N-900 text-[12px] leading-xxs text-white">
         <div className='font-medium'>${heading}</div>
         <div className='font-normal'>${body ?? ''}</div>
       </div>`
@@ -41,8 +41,8 @@ export const ToolTip = ({
         id={id}
         place={place}
         className={cx(
-          'max-w-[320px] min-w-[120px] bg-N-900 rounded px-[12px]',
-          { 'py-[8px]': body === undefined, 'py-[12px]': body }
+          'max-w-[320px] bg-N-900 rounded px-3',
+          { 'py-2': body === undefined, 'py-3': body }
         )}
       />
     </div>

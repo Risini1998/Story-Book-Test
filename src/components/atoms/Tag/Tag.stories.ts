@@ -14,6 +14,9 @@ type Story = StoryObj<typeof Tag>
 
 export const DefaultTag: Story = {
   args: {
+    type:'default',
     children: 'Tag',
+    closable:true,
+    disabled:false
   },
 }
