@@ -2,14 +2,14 @@ import React, { type ReactNode, type ReactElement } from 'react'
 import cx from 'classnames'
 
 interface ButtonProps {
-  isBlock?: boolean
+  children: ReactNode
   disabled?: boolean
   iconLeading?: boolean
   iconOnly?: boolean
   iconSwap?: string
   iconTrailing?: boolean
+  isBlock?: boolean
   isLoading?: boolean
-  children: ReactNode
   onClick?: () => void
   size?: 'xs' | 'sm' | 'md' | 'lg'
   type?:
