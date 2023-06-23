@@ -3,19 +3,19 @@ import React, { type ReactElement } from 'react'
 import classnames from 'classnames'
 
 interface Props {
-  type?: 'default' | 'subtle' | 'outline'
   color?:
-    | 'default'
     | 'danger'
+    | 'default'
+    | 'disabled'
+    | 'info'
     | 'primary'
     | 'success'
     | 'warning-1'
     | 'warning-2'
-    | 'info'
-    | 'disabled'
-  flag?: boolean
   content: string
+  flag?: boolean
   icon?: boolean
+  type?: 'default' | 'subtle' | 'outline'
 }
 
 export function Lozenge({
@@ -28,7 +28,7 @@ export function Lozenge({
   return (
     <div
       className={classnames(
-        'box-border flex justify-center items-center gap-1 w-fit py-[4px] text-xs font-heading uppercase',
+        'box-border flex justify-center items-center gap-1 w-fit py-1 text-xs font-heading uppercase',
         {
           // Type: default
           'text-white fill-white bg-N-700':
@@ -85,11 +85,11 @@ export function Lozenge({
             type === 'outline' && color === 'disabled'
         },
         {
-          'rounded px-[8px] font-medium': !flag,
-          'rounded-r px-[12px] font-bold': flag
+          'rounded px-2 font-medium': !flag,
+          'rounded-r px-3 font-bold': flag
         }
       )}>
-      {icon && <i className="ri-checkbox-blank-circle-line h-[16px] w-[16px]"></i>}
+      {icon && <i className='ri-checkbox-blank-circle-line h-4 w-4'></i>}
       {content}
     </div>
   )
