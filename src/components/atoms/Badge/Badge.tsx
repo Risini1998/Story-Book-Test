@@ -2,20 +2,20 @@ import React, { type ReactNode, type ReactElement } from 'react'
 import classnames from 'classnames'
 
 interface Props {
-  type?: 'default' | 'subtle'
-  color?: 'gray' | 'blue' | 'red' | 'warning'
   children: ReactNode
+  color?: 'gray' | 'blue' | 'red' | 'warning'
+  type?: 'default' | 'subtle'
 }
 
 export function Badge({
-  type = 'default',
+  children,
   color = 'gray',
-  children
+  type = 'default'
 }: Props): ReactElement {
   return (
     <span
       className={classnames(
-        'flex justify-center items-center w-fit py-[2px] px-[8px] rounded-3xl font-regular text-xs font-heading',
+        'flex justify-center items-center w-fit py-[2px] px-2 rounded-3xl font-regular text-xs font-heading',
         {
           // Type: default
           'text-white bg-N-600': type === 'default' && color === 'gray',

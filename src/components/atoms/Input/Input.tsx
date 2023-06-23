@@ -10,6 +10,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   // state?: 'default' | 'hover' | 'focused' | 'disabled'
   disabled?: boolean
   hint?: string
+  inputSize?: 'sm' | 'md'
   isError?: boolean
   isHintEnabled?: boolean
   isLabelEnabled?: boolean
@@ -18,7 +19,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   leadingIcon?: ReactNode
   required?: boolean
-  inputSize?: 'sm' | 'md'
   telInput?: boolean
   trailingIcon?: ReactNode
 }
@@ -28,8 +28,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef(function Input(
   {
+    // state = 'default',
     disabled = false,
     hint = '',
+    inputSize = 'md',
     isError = false,
     isHintEnabled = false,
     isLabelEnabled = false,
@@ -38,15 +40,13 @@ export const Input = forwardRef(function Input(
     label = '',
     leadingIcon = null,
     required = false,
-    inputSize = 'md',
-    // state = 'default',
     telInput = false,
     trailingIcon = null,
     ...inputProps
   }: Props,
   ref: any
 ): ReactElement {
-  const wrapperClassName: string = 'flex flex-col gap-[4px]'
+  const wrapperClassName: string = 'flex flex-col gap-1'
 
   const labelClassName: string = classnames(
     'text-N-700 font-medium font-heading',
@@ -60,10 +60,10 @@ export const Input = forwardRef(function Input(
   )
 
   const inputClassName: string = classnames(
-    'w-[320px] px-[12px] rounded border-2 font-regular font-heading focus:outline-none',
+    'w-80 px-3 rounded border-2 font-regular font-heading focus:outline-none',
     {
-      'text-sm h-[40px]': inputSize === 'sm',
-      'text-base h-[44px]': inputSize === 'md'
+      'text-sm h-10': inputSize === 'sm',
+      'text-base h-11': inputSize === 'md'
     },
     {
       'bg-N-100 border-N-200 text-N-200 cursor-not-allowed':
