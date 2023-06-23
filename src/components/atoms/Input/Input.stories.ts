@@ -25,16 +25,16 @@ export const Base: Story = {
   args: {
     isHintEnabled: true,
     hint: 'This is a hint text to help user.',
-    isLeadingIcon: false,
-    isTrailingIcon: false,
+    isLeadingIconEnabled: false,
+    isTrailingIconEnabled: false,
     isLabelEnabled: true,
     label: 'Label',
-    leadingIcon: null,
+    leadingIcon: 'ri-checkbox-blank-circle-line',
     required: true,
     inputSize: 'md',
     // state: 'default',
     telInput: false,
-    trailingIcon: null
+    trailingIcon: 'ri-arrow-down-fill'
   }
 }
 
@@ -43,16 +43,16 @@ export const Disabled: Story = {
     disabled: true,
     isHintEnabled: true,
     hint: 'This is a hint text to help user.',
-    isLeadingIcon: false,
-    isTrailingIcon: false,
+    isLeadingIconEnabled: false,
+    isTrailingIconEnabled: false,
     isLabelEnabled: true,
     label: 'Label',
-    leadingIcon: null,
+    leadingIcon: '',
     required: true,
     inputSize: 'md',
     // state: 'default',
     telInput: false,
-    trailingIcon: null
+    trailingIcon: ''
   }
 }
 
@@ -60,16 +60,16 @@ export const Placeholder: Story = {
   args: {
     isHintEnabled: true,
     hint: 'This is a hint text to help user.',
-    isLeadingIcon: false,
-    isTrailingIcon: false,
+    isLeadingIconEnabled: false,
+    isTrailingIconEnabled: false,
     isLabelEnabled: true,
     label: 'Label',
-    leadingIcon: null,
+    leadingIcon: '',
     required: true,
     inputSize: 'md',
     // state: 'default',
     telInput: false,
-    trailingIcon: null,
+    trailingIcon: '',
     placeholder: 'Placeholder text'
   }
 }
@@ -79,17 +79,40 @@ export const ChangeHandler: Story = {
   args: {
     isHintEnabled: true,
     hint: 'View the console',
-    isLeadingIcon: false,
-    isTrailingIcon: false,
+    isLeadingIconEnabled: false,
+    isTrailingIconEnabled: false,
     isLabelEnabled: true,
     label: 'Label',
-    leadingIcon: null,
+    leadingIcon: '',
     required: true,
     inputSize: 'md',
     // state: 'default',
     telInput: false,
-    trailingIcon: null,
+    trailingIcon: '',
     placeholder: 'Enter text',
+    onChange: e => {
+      console.log(e.target.value)
+    }
+  }
+}
+
+export const Password: Story = {
+  name: 'Password',
+  args: {
+    // state: 'default',
+    hint: 'Type the password',
+    inputSize: 'md',
+    isHintEnabled: true,
+    isLabelEnabled: true,
+    isLeadingIconEnabled: false,
+    isTrailingIconEnabled: false,
+    label: 'Label',
+    leadingIcon: '',
+    placeholder: 'Enter password',
+    required: true,
+    telInput: false,
+    trailingIcon: 'ri-arrow-down-fill',
+    type: 'password',
     onChange: e => {
       console.log(e.target.value)
     }
