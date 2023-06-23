@@ -15,7 +15,7 @@ export function Badge({
   return (
     <span
       className={classnames(
-        'flex justify-center items-center w-fit py-[2px] px-[8px] rounded-3xl font-regular text-xs font-heading',
+        'flex justify-center items-center w-fit py-[2px] px-2 rounded-3xl font-regular text-xs font-heading',
         {
           // Type: default
           'text-white bg-N-600': type === 'default' && color === 'gray',
