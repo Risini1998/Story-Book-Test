@@ -2,6 +2,7 @@
 import { fontFamily, display, headings, body } from './src/styles/typographyStyles'
 
 module.exports = {
+  important: true,
   mode: 'jit',
   content: [
     './src/**/**/*.{js,jsx,ts,tsx,css,scss,mdx,md,pdf}',
