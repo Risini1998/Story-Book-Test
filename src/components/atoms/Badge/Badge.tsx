@@ -2,15 +2,15 @@ import React, { type ReactNode, type ReactElement } from 'react'
 import classnames from 'classnames'
 
 interface Props {
-  type?: 'default' | 'subtle'
-  color?: 'gray' | 'blue' | 'red' | 'warning'
   children: ReactNode
+  color?: 'gray' | 'blue' | 'red' | 'warning'
+  type?: 'default' | 'subtle'
 }
 
 export function Badge({
-  type = 'default',
+  children,
   color = 'gray',
-  children
+  type = 'default'
 }: Props): ReactElement {
   return (
     <span
