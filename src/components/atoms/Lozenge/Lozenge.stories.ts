@@ -16,7 +16,8 @@ export const Default: Story = {
     color: 'default',
     content: 'Lozenge',
     flag: false,
-    icon: false,
+    isIconEnabled: false,
+    icon: 'ri-checkbox-blank-circle-line',
     type: 'default'
   }
 }
@@ -26,7 +27,8 @@ export const Subtle: Story = {
     color: 'default',
     content: 'Lozenge',
     flag: false,
-    icon: false,
+    isIconEnabled: false,
+    icon: 'ri-checkbox-blank-circle-line',
     type: 'subtle'
   }
 }
@@ -36,7 +38,8 @@ export const Outline: Story = {
     color: 'default',
     content: 'Lozenge',
     flag: false,
-    icon: false,
+    isIconEnabled: false,
+    icon: 'ri-checkbox-blank-circle-line',
     type: 'outline'
   }
 }
