@@ -14,7 +14,8 @@ interface Props {
     | 'warning-2'
   content: string
   flag?: boolean
-  icon?: boolean
+  icon?: string
+  isIconEnabled?: boolean
   type?: 'default' | 'subtle' | 'outline'
 }
 
@@ -22,7 +23,8 @@ export function Lozenge({
   color = 'default',
   content,
   flag = false,
-  icon = false,
+  icon,
+  isIconEnabled = false,
   type = 'default'
 }: Props): ReactElement {
   return (
@@ -89,7 +91,7 @@ export function Lozenge({
           'rounded-r px-3 font-bold': flag
         }
       )}>
-      {icon && <i className='ri-checkbox-blank-circle-line h-4 w-4'></i>}
+      {isIconEnabled && icon && <i className={classnames('h-4 w-4', icon)}></i>}
       {content}
     </div>
   )
