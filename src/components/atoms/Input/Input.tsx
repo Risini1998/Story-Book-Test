@@ -10,6 +10,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   // state?: 'default' | 'hover' | 'focused' | 'disabled'
   disabled?: boolean
   hint?: string
+  inputSize?: 'sm' | 'md'
   isError?: boolean
   isHintEnabled?: boolean
   isLabelEnabled?: boolean
@@ -18,7 +19,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   leadingIcon?: ReactNode
   required?: boolean
-  inputSize?: 'sm' | 'md'
   telInput?: boolean
   trailingIcon?: ReactNode
 }
@@ -28,8 +28,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef(function Input(
   {
+    // state = 'default',
     disabled = false,
     hint = '',
+    inputSize = 'md',
     isError = false,
     isHintEnabled = false,
     isLabelEnabled = false,
@@ -38,8 +40,6 @@ export const Input = forwardRef(function Input(
     label = '',
     leadingIcon = null,
     required = false,
-    inputSize = 'md',
-    // state = 'default',
     telInput = false,
     trailingIcon = null,
     ...inputProps
