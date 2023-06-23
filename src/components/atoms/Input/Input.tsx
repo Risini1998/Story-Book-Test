@@ -1,5 +1,5 @@
 import React, {
-  type ReactNode,
+  useState,
   type ReactElement,
   forwardRef,
   type InputHTMLAttributes
@@ -14,17 +14,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean
   isHintEnabled?: boolean
   isLabelEnabled?: boolean
-  isLeadingIcon?: boolean
-  isTrailingIcon?: boolean
+  isLeadingIconEnabled?: boolean
+  isTrailingIconEnabled?: boolean
   label?: string
-  leadingIcon?: ReactNode
+  leadingIcon?: string
   required?: boolean
   telInput?: boolean
-  trailingIcon?: ReactNode
+  trailingIcon?: string
 }
-
-// TODO: inputProps, error prop added? icon?
-// TODO: Added disabled property (because get the error Property 'disabled' does not exist on type '{ inputProps: InputHTMLAttributes<HTMLInputElement>; }'.)
 
 export const Input = forwardRef(function Input(
   {
@@ -35,17 +32,20 @@ export const Input = forwardRef(function Input(
     isError = false,
     isHintEnabled = false,
     isLabelEnabled = false,
-    isLeadingIcon = false,
-    isTrailingIcon = false,
+    isLeadingIconEnabled = false,
+    isTrailingIconEnabled = false,
     label = '',
-    leadingIcon = null,
+    leadingIcon = '',
     required = false,
     telInput = false,
-    trailingIcon = null,
+    trailingIcon = '',
     ...inputProps
   }: Props,
   ref: any
 ): ReactElement {
+  const [showPassword, setShowPassword] = useState(false)
+  const { type, ...otherProps } = inputProps
+
   const wrapperClassName: string = 'flex flex-col gap-1'
 
   const labelClassName: string = classnames(
@@ -59,8 +59,43 @@ export const Input = forwardRef(function Input(
     }
   )
 
+  const inputWrapperClassName: string = 'relative w-fit'
+
+  const leadingIconClassName: string = classnames(
+    'h-4 w-4 left-4 fill-N-700 absolute flex justify-center items-center',
+    {
+      'top-3 bottom-3': inputSize === 'sm',
+      'top-[14px] bottom-[14px]': inputSize === 'md'
+    },
+    leadingIcon
+  )
+
+  const showingTrailingIcon =
+    type === 'password'
+      ? showPassword
+        ? 'ri-eye-line'
+        : 'ri-eye-close-line'
+      : trailingIcon
+
+  const trailingIconClassName: string = classnames(
+    'h-4 w-4 right-4 fill-N-700 absolute flex justify-center items-center cursor-pointer',
+    {
+      'top-3 bottom-3': inputSize === 'sm',
+      'top-[14px] bottom-[14px]': inputSize === 'md'
+    },
+    showingTrailingIcon
+  )
+
   const inputClassName: string = classnames(
-    'w-80 px-3 rounded border-2 font-regular font-heading focus:outline-none',
+    'w-80 rounded border-2 font-regular font-heading focus:outline-none',
+    {
+      'pl-[42px]': isLeadingIconEnabled,
+      'pl-3': !isLeadingIconEnabled
+    },
+    {
+      'pr-[42px]': isTrailingIconEnabled,
+      'pr-3': !isTrailingIconEnabled
+    },
     {
       'text-sm h-10': inputSize === 'sm',
       'text-base h-11': inputSize === 'md'
@@ -89,16 +124,26 @@ export const Input = forwardRef(function Input(
     }
   )
 
+  const switchVisibility = (): void => {
+    setShowPassword(prev => !prev)
+  }
+
   return (
     <div className={wrapperClassName}>
       {isLabelEnabled && <label className={labelClassName}>{label}</label>}
-      <input
-        className={inputClassName}
-        disabled={disabled}
-        type={telInput ? 'number' : 'text'}
-        ref={ref}
-        {...inputProps}
-      />
+      <div className={inputWrapperClassName}>
+        {isLeadingIconEnabled && <i className={leadingIconClassName}></i>}
+        <input
+          className={inputClassName}
+          disabled={disabled}
+          type={showPassword ? 'text' : type}
+          ref={ref}
+          {...otherProps}
+        />
+        {(isTrailingIconEnabled || type === 'password') && (
+          <i className={trailingIconClassName} onClick={switchVisibility}></i>
+        )}
+      </div>
       {isHintEnabled && <p className={hintClassName}>{hint}</p>}
     </div>
   )
